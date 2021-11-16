@@ -5,6 +5,9 @@ import com.dba.dbaapi.model.UserDocumentation;
 import com.dba.dbaapi.repository.UserDocumentationRepository;
 import com.dba.dbaapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -12,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,8 +24,8 @@ public class UserDocumantationController {
     private UserDocumentationRepository repository;
 
     @GetMapping
-    public List<UserDocumentation> listar() {
-        return repository.findAll();
+    public Page<UserDocumentation> listar(@PageableDefault(page = 0, size = 10) Pageable paginacao) {
+        return repository.findAll(paginacao);
     }
 
     @GetMapping("/{id}")

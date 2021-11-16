@@ -3,6 +3,9 @@ package com.dba.dbaapi.controller;
 import com.dba.dbaapi.model.User;
 import com.dba.dbaapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,8 +24,8 @@ public class UserController {
     private UserRepository repository;
 
     @GetMapping
-    public List<User> listar() {
-        return repository.findAll();
+    public Page<User> listar(@PageableDefault(page = 0, size = 10) Pageable paginacao) {
+        return repository.findAll(paginacao);
     }
 
     @GetMapping("/{id}")
