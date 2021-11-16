@@ -1,17 +1,24 @@
 package com.dba.dbaapi.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class UserDocumentation {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private byte[] document;
+
+    @NotEmpty
     @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
 
+
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @NotNull
     private User user;
 
     public UserDocumentation() {
