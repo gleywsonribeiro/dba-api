@@ -1,0 +1,5 @@
+INSERT INTO USER(nome, cpf) VALUES('Gleywson', '95588205200');
+INSERT INTO USER(nome, cpf) VALUES('Maria', '98852963200');
+
+INSERT INTO USER_DOCUMENTATION(tipo_documento, user_id) VALUES('CPF', 1);
+INSERT INTO USER_DOCUMENTATION(tipo_documento, user_id) VALUES('OUTROS', 1);
